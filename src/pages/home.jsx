@@ -9,28 +9,40 @@ import {
 } from 'framework7-react';
 
 const HomePage = () => {
-    const [count, setCount] = React.useState(0);
-    const [value, setValue] = React.useState(0);
-    const [op, setOp] = React.useState(0);
-    const [flag, setFlag] = React.useState(false);
-
-    const onClickButton = () => {
-        setCount(count + 1);
-    }
+    const [count, setCount] = React.useState(0);    //画面に表示する値
+    const [value, setValue] = React.useState(0);    //計算用の変数
+    const [op, setOp] = React.useState('');
+    const [flag, setFlag] = React.useState(false);  //四則演算の記号が押されるとtrue
 
     const insertNum = (val) => {
-        console.log(flag);
-        if (flag == true) {
-            setCount(0);
+        if (flag == true) { //記号が押されていたら
+            setCount(val);
             setFlag(false);
+        } else {
+            setCount(count * 10 + val); //入力されているcountの値を10倍し押された値を入れる
         }
-        setCount(count * 10 + val);
-        console.log(flag);
     }
 
-    const insSymbol = (sym) => {
-        if (flag == false) {
-            setFlag(true);
+    const insertSym = (sym) => {
+        setOp(sym);
+        setValue(count)
+        setFlag(true);
+    }
+
+    const equal = () => {
+        switch (op) {
+            case '+':
+                setCount(value + count);
+                break;
+            case '-':
+                setCount(value - count);
+                break;
+            case '*':
+                setCount(value * count);
+                break;
+            case '/':
+                setCount(value / count);
+                break;
         }
     }
 
@@ -43,9 +55,8 @@ const HomePage = () => {
         <Page name="home">
             <Navbar title="電卓" />
 
-            <div>結果表示欄{count}</div>
-
-
+            結果表示欄
+            <div className="frame">{count}</div>
 
             <Block>
                 <Row>
@@ -58,27 +69,26 @@ const HomePage = () => {
                     <Col><Button onClick={() => insertNum(7)}>7</Button></Col>
                     <Col><Button onClick={() => insertNum(8)}>8</Button></Col>
                     <Col><Button onClick={() => insertNum(9)}>9</Button></Col>
-                    <Col><Button onClick={() => insSymbol('/')}>÷</Button></Col>
+                    <Col><Button onClick={() => insertSym('/')}>÷</Button></Col>
                 </Row>
                 <Row>
                     <Col><Button onClick={() => insertNum(4)}>4</Button></Col>
                     <Col><Button onClick={() => insertNum(5)}>5</Button></Col>
                     <Col><Button onClick={() => insertNum(6)}>6</Button></Col>
-                    <Col><Button onClick={() => insSymbol('*')}>×</Button></Col>
+                    <Col><Button onClick={() => insertSym('*')}>×</Button></Col>
                 </Row>
                 <Row>
                     <Col><Button onClick={() => insertNum(1)}>1</Button></Col>
                     <Col><Button onClick={() => insertNum(2)}>2</Button></Col>
                     <Col><Button onClick={() => insertNum(3)}>3</Button></Col>
-                    <Col><Button onClick={() => insSymbol('-')}>-</Button></Col>
+                    <Col><Button onClick={() => insertSym('-')}>-</Button></Col>
                 </Row>
                 <Row>
                     <Col></Col>
-                    <Col><Button onClick={() => insertNum()}>0</Button></Col>
-                    <Col><Button>=</Button></Col>
-                    <Col><Button onClick={() => insSymbol('+')}>+</Button></Col>
+                    <Col><Button onClick={() => insertNum(0)}>0</Button></Col>
+                    <Col><Button onClick={() => equal()}>=</Button></Col>
+                    <Col><Button onClick={() => insertSym('+')}>+</Button></Col>
                 </Row>
-                <Button fill onClick={() => onClickButton()}>カウントアップ</Button>
             </Block>
         </Page>);
 }

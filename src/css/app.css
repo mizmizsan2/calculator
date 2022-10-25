@@ -4,3 +4,9 @@
 }
 
 /* Your app custom styles here */
+
+.frame{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    border: double 5px #4ec4d3;
+}
