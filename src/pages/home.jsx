@@ -14,23 +14,23 @@ const HomePage = () => {
     const [op, setOp] = React.useState('');
     const [flag, setFlag] = React.useState(false);  //四則演算の記号が押されるとtrue
 
-    const insertNum = (val) => {
+    const insertNum = (val) => {    //数字が押されたら呼び出される
         if (flag == true) { //記号が押されていたら
             setCount(val);
             setFlag(false);
-        } else {
+        } else {    //記号が押されていなかったら
             setCount(count * 10 + val); //入力されているcountの値を10倍し押された値を入れる
         }
     }
 
-    const insertSym = (sym) => {
+    const insertSym = (sym) => {    //四則演算の記号が押されたときに呼び出し
         setOp(sym);
         setValue(count)
         setFlag(true);
     }
 
     const equal = () => {
-        switch (op) {
+        switch (op) {   //opに保存された記号によって計算する
             case '+':
                 setCount(value + count);
                 break;
@@ -44,17 +44,20 @@ const HomePage = () => {
                 setCount(value / count);
                 break;
         }
+        setValue(0);
     }
 
-    const allClear = () => {
+    const allClear = () => {    //ACを押されたら全てを初期値に
         setCount(0);
         setValue(0);
+        setOp('');
+        setFlag(false);
     }
 
     return (
         <Page name="home">
             <Navbar title="電卓" />
-            <div className="frame">{count}</div>
+            <div className="frame">{count}</div>    {/*結果表示欄*/}
 
             <Block>
                 <Row>
@@ -88,6 +91,7 @@ const HomePage = () => {
                     <Col><Button onClick={() => insertSym('+')}>+</Button></Col>
                 </Row>
             </Block>
-        </Page>);
+        </Page>
+    );
 }
 export default HomePage;
