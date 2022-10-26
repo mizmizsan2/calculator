@@ -54,8 +54,6 @@ const HomePage = () => {
     return (
         <Page name="home">
             <Navbar title="電卓" />
-
-            結果表示欄
             <div className="frame">{count}</div>
 
             <Block>
@@ -66,26 +64,26 @@ const HomePage = () => {
                     <Col><Button onClick={() => allClear()}>AC</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button onClick={() => insertNum(7)}>7</Button></Col>
-                    <Col><Button onClick={() => insertNum(8)}>8</Button></Col>
-                    <Col><Button onClick={() => insertNum(9)}>9</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(7)}>7</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(8)}>8</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(9)}>9</Button></Col>
                     <Col><Button onClick={() => insertSym('/')}>÷</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button onClick={() => insertNum(4)}>4</Button></Col>
-                    <Col><Button onClick={() => insertNum(5)}>5</Button></Col>
-                    <Col><Button onClick={() => insertNum(6)}>6</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(4)}>4</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(5)}>5</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(6)}>6</Button></Col>
                     <Col><Button onClick={() => insertSym('*')}>×</Button></Col>
                 </Row>
                 <Row>
-                    <Col><Button onClick={() => insertNum(1)}>1</Button></Col>
-                    <Col><Button onClick={() => insertNum(2)}>2</Button></Col>
-                    <Col><Button onClick={() => insertNum(3)}>3</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(1)}>1</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(2)}>2</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(3)}>3</Button></Col>
                     <Col><Button onClick={() => insertSym('-')}>-</Button></Col>
                 </Row>
                 <Row>
                     <Col></Col>
-                    <Col><Button onClick={() => insertNum(0)}>0</Button></Col>
+                    <Col><Button fill onClick={() => insertNum(0)}>0</Button></Col>
                     <Col><Button onClick={() => equal()}>=</Button></Col>
                     <Col><Button onClick={() => insertSym('+')}>+</Button></Col>
                 </Row>
